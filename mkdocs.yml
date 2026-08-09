@@ -32,6 +32,7 @@ plugins:
   - search:
       lang: ja
   - tags
+  - social
 
 markdown_extensions:
   - admonition

@@ -66,3 +66,7 @@ tags:
 Pull Requestでは `.github/workflows/check.yml` が公開前のビルドを検証します。
 
 公開前に、記事や画像へ個人情報、認証情報、公開してはいけない内容が含まれていないことを確認してください。
+
+## OGP画像
+
+Material for MkDocsのSocialプラグインにより、各ページのタイトルと概要からOGP用ソーシャルカードを自動生成します。生成物は `site/assets/images/social/` に出力され、GitHub Pagesへ一緒に公開されます。
