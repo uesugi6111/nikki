@@ -13,10 +13,12 @@ tags:
 
 # VALORANT / Discord ネットワーク障害 調査まとめ
 
-## 0.ここだけ手書き
+## 0. ここだけ手書き
 
 こちらはネットワークの問題をchatGPT 5.6 Sol君にまとめさせながら調査したものを最後に出力させたもの。
+
 私から伝えられることは「v6プラス(ポート割り当て240個←めっちゃ少ない)を使用する場合はポートセービングIPマスカレード機能がついているルーターを使おう」くらい。
+
 自分はYAMAHA のルーターを使用しているせいか上位機種（[RTX1300 (希望小売価格： 295,900円(税込))](https://network.yamaha.com/products/routers/rtx1300/index)）をおすすめされましたが(買えません)、通常のルーターは多分似たような機能が入っているので気にしなくていい説はあります。
 
 ## 1. 概要
@@ -84,9 +86,9 @@ RTX830のMAP-Eで利用可能なIPv4外部ポートは以下の15ブロック。
 
 ---
 
-# 3. 元々発生していた問題
+## 3. 元々発生していた問題
 
-## 3.1 VALORANT
+### 3.1 VALORANT
 
 VALORANTのマップ読み込みが不定期に極端に遅くなる。
 
@@ -117,7 +119,7 @@ SSD、CPU、RAM、GPUなどについて調査したが、
 
 ---
 
-## 3.2 Discord VC
+### 3.2 Discord VC
 
 Discord VCで、
 
@@ -157,7 +159,7 @@ RTC_CONNECTING => NO_ROUTE
 
 ---
 
-# 4. Discord障害時のパケットキャプチャ
+## 4. Discord障害時のパケットキャプチャ
 
 Pktmonで障害中の通信を取得した。
 
@@ -200,7 +202,7 @@ RTC connected to media server
 
 ---
 
-# 5. スマートフォンでも同じDiscord障害を確認
+## 5. スマートフォンでも同じDiscord障害を確認
 
 PCでDiscord VCへの接続に失敗している最中、
 
@@ -225,7 +227,7 @@ PC固有設定
 
 ---
 
-# 6. RTX830 / MAP-E NAT調査
+## 6. RTX830 / MAP-E NAT調査
 
 RTX830ではNAT descriptor 20000をMAP-Eに使用。
 
@@ -247,7 +249,7 @@ MAP-Eで利用可能なのは240ポートなので、
 
 ---
 
-## 6.1 NATテーブルでVALORANT系UDPを多数確認
+### 6.1 NATテーブルでVALORANT系UDPを多数確認
 
 RTX830のNAT詳細を確認すると、PC `192.168.100.8` から以下のような宛先へのUDP mappingが大量に存在していた。
 
@@ -282,7 +284,7 @@ PC側source port数とRTX830外部ポート数は完全に同一ではないも�
 
 ---
 
-# 7. NATセッション総数との違い
+## 7. NATセッション総数との違い
 
 RTX830では、
 
@@ -323,7 +325,7 @@ TCPではType2のポート節約が機能するため、多数のTCPセッショ
 
 ---
 
-# 8. UDP NAT timer
+## 8. UDP NAT timer
 
 RTX830のNAT timerは未設定だったため、UDPについてもデフォルトの
 
@@ -359,7 +361,7 @@ RTC Connecting / No Route
 
 ---
 
-# 9. Discord接続成功時刻との相関
+## 9. Discord接続成功時刻との相関
 
 障害中に使用されていた古いUDP mappingについて、
 
@@ -387,7 +389,7 @@ Discordが新しいmapping取得
 
 ---
 
-# 10. UDP NAT timerを300秒へ変更
+## 10. UDP NAT timerを300秒へ変更
 
 対策としてRTX830に、
 
@@ -412,7 +414,7 @@ TCPには影響しない。
 
 ---
 
-## 10.1 300秒化後
+### 10.1 300秒化後
 
 変更後、以前発生していた、
 
@@ -438,7 +440,7 @@ No Route
 
 ---
 
-# 11. 300秒化後に新たな「瞬断」を認識
+## 11. 300秒化後に新たな「瞬断」を認識
 
 300秒化後、
 
@@ -459,7 +461,7 @@ NAT timerを300秒にした副作用
 
 ---
 
-# 12. VALORANT瞬断時のPCAP
+## 12. VALORANT瞬断時のPCAP
 
 15:24前後にVALORANTで瞬断が発生。
 
@@ -496,7 +498,7 @@ MLD
 
 ---
 
-# 13. 15:32 / 15:35にも同じ現象を捕捉
+## 13. 15:32 / 15:35にも同じ現象を捕捉
 
 別のPCAPでは、
 
@@ -538,7 +540,7 @@ Discord UDPも同時に停止していた。
 
 ---
 
-# 14. Windows Event Logでリンク断を確認
+## 14. Windows Event Logでリンク断を確認
 
 PCAPの時刻とWindows System Event Logを比較。
 
@@ -595,7 +597,7 @@ Intel(R) Ethernet Controller I226-V
 
 ---
 
-# 15. RTX830側の挙動
+## 15. RTX830側の挙動
 
 RTX830でもリンク復帰後、
 
@@ -628,7 +630,7 @@ DHCP再取得
 
 ---
 
-# 16. 原因: Intel I226-V の EEE
+## 16. 原因: Intel I226-V の EEE
 
 調査中、Intel I226-Vのドライバを再インストールしていた。
 
@@ -653,7 +655,7 @@ EEE = ON
 
 ---
 
-# 17. EEEをOFFへ戻した結果
+## 17. EEEをOFFへ戻した結果
 
 EEEを再びOFFへ変更。
 
@@ -692,7 +694,7 @@ ID 27 / ID 32
 
 ---
 
-# 18. EEE問題の結論
+## 18. EEE問題の結論
 
 以下が成立した。
 
@@ -727,23 +729,23 @@ EEE OFFへ戻す
 
 ---
 
-# 19. 最終的な問題の分離
+## 19. 最終的な問題の分離
 
-## 問題A: I226-Vリンク瞬断
+### 問題A: I226-Vリンク瞬断
 
-### 症状
+#### 症状
 
 - VALORANTが突然数秒止まる
 - Discord VCが数秒途切れる
 - その他Ethernet通信も同時停止
 
-### 原因
+#### 原因
 
 **Intel I226-VのEnergy Efficient Ethernet (EEE)**
 
 ドライバ再インストールによってEEEがONへ戻っていた。
 
-### 証拠
+#### 証拠
 
 - Windows `e2fnexpress ID 27`
 - 約3秒後の `ID 32`
@@ -752,7 +754,7 @@ EEE OFFへ戻す
 - VALORANT / Discord停止時刻との完全一致
 - EEE OFF後、数時間リンク断なし
 
-### 現在
+#### 現在
 
 ```text
 EEE = OFF
@@ -762,9 +764,9 @@ EEE = OFF
 
 ---
 
-## 問題B: Discord / VALORANT UDP接続問題
+### 問題B: Discord / VALORANT UDP接続問題
 
-### 症状
+#### 症状
 
 Discord:
 
@@ -779,7 +781,7 @@ VALORANT:
 - 極端なマップロード遅延
 - UDP通信確立の問題が疑われる
 
-### 有力原因
+#### 有力原因
 
 ```text
 JPIX v6プラス / MAP-E
@@ -801,7 +803,7 @@ VALORANTが多数のUDP mappingを生成
 
 が最有力。
 
-### 証拠
+#### 証拠
 
 - Discord WebSocket接続は正常
 - UDP mediaだけ `NO_ROUTE`
@@ -816,14 +818,14 @@ VALORANTが多数のUDP mappingを生成
 - 900秒経過によるmapping解放とDiscord成功時刻が近いケースあり
 - UDP NAT timerを300秒へ変更後、問題が現在まで再発していない
 
-### 対策
+#### 対策
 
 ```text
 nat descriptor timer 20000 protocol=udp 300
 save
 ```
 
-### 現在
+#### 現在
 
 ```text
 UDP NAT timer = 300秒
@@ -835,16 +837,16 @@ UDP NAT timer = 300秒
 
 ---
 
-# 20. 現在の最終設定
+## 20. 現在の最終設定
 
-## Intel I226-V
+### Intel I226-V
 
 ```text
 Energy Efficient Ethernet / 省電力イーサネット
 = Disabled
 ```
 
-## Yamaha RTX830
+### Yamaha RTX830
 
 ```text
 nat descriptor timer 20000 protocol=udp 300
@@ -852,7 +854,7 @@ nat descriptor timer 20000 protocol=udp 300
 
 ---
 
-# 21. 現在の状態
+## 21. 現在の状態
 
 現時点では、
 
@@ -881,9 +883,9 @@ UDP NAT timer 300秒
 
 ---
 
-# 22. 今後再発した場合
+## 22. 今後再発した場合
 
-## 数秒間のネットワーク瞬断
+### 数秒間のネットワーク瞬断
 
 最初に確認する。
 
@@ -904,7 +906,7 @@ Sort-Object TimeCreated
 
 ---
 
-## Discord RTC Connecting / No Route
+### Discord RTC Connecting / No Route
 
 EEE問題とは分離して調査する。
 
@@ -927,7 +929,7 @@ UDP NAT timer 300秒でも再発するか
 
 ---
 
-# 23. 最終評価
+## 23. 最終評価
 
 ### I226-V / EEE問題
 
