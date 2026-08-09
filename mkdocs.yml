@@ -31,6 +31,7 @@ theme:
 plugins:
   - search:
       lang: ja
+  - tags
 
 markdown_extensions:
   - admonition
