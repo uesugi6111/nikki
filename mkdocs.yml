@@ -32,7 +32,9 @@ plugins:
   - search:
       lang: ja
   - tags
-  - social
+  - social:
+      cards_layout_options:
+        font_family: Noto Sans JP
 
 markdown_extensions:
   - admonition
