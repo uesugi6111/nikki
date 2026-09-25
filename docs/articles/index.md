@@ -2,5 +2,6 @@
 
 ## 2026年
 
+- 2026-09-25: [VALORANTのPerformance ScoreはACSから何が変わったのか](2026/2026-09-25-valorant-acs-to-ps.md)
 - 2026-08-10: [VALORANT / Discord ネットワーク障害 調査まとめ](2026/2026-08-10-port-tarinai.md)
 - 2026-08-10: [ここに記事タイトルが入ります](2026/2026-08-10-sample.md)
