@@ -119,7 +119,7 @@ First Killについては、追加データを含めておよそ **80 player-mat
 
 ---
 
-# ACSは何を評価していたのか
+## ACSは何を評価していたのか
 
 ACSも単純なキル数ランキングではなかった。
 
@@ -151,7 +151,7 @@ Riot自身も旧Combat Scoreについて、試合における「core combat」�
 
 ---
 
-# Performance Scoreで評価されているもの
+## Performance Scoreで評価されているもの
 
 現在のPerformance Score詳細画面では、少なくとも以下の項目が表示される。
 
@@ -183,7 +183,7 @@ Patch 13.06でRiotはPerformance Scoreについて、
 
 ---
 
-# 変わらなかったもの：KillとDamageは依然として重要
+## 変わらなかったもの：KillとDamageは依然として重要
 
 Performance Scoreになったからといって、
 
@@ -224,7 +224,7 @@ AssistやUtilityが多くても、
 
 ---
 
-# 大きく変わったもの：Trade
+## 大きく変わったもの：Trade
 
 ACSとの違いとして特に興味深いのが **Trade** である。
 
@@ -273,7 +273,7 @@ Performance Scoreでは「トレード」が独立した評価項目として存
 
 ---
 
-# Assistの評価も大きくなった可能性が高い
+## Assistの評価も大きくなった可能性が高い
 
 Assistについては、最近のRiotの方向性ともよく一致している。
 
@@ -354,7 +354,7 @@ ACSだけを見ると突出した試合ではないが、Performance Scoreでは
 
 ---
 
-# Deathも明示的な評価軸になった
+## Deathも明示的な評価軸になった
 
 ACSでは、
 
@@ -391,7 +391,7 @@ Performance Scoreには明確に、
 
 ---
 
-# 「調整キル」「調整デス」とは何なのか
+## 「調整キル」「調整デス」とは何なのか
 
 Performance Scoreの中でも特に興味深いのが、
 
@@ -451,7 +451,7 @@ Adjusted Killは単純な
 
 ---
 
-# First Killの扱いはどう変わったのか
+## First Killの扱いはどう変わったのか
 
 当初、自分は
 
@@ -461,7 +461,7 @@ Adjusted Killは単純な
 
 ただし追加データを確認した結果、この表現は少し強すぎると思う。
 
-## ACSではEarly Killが構造的に高く評価されていた
+### ACSではEarly Killが構造的に高く評価されていた
 
 旧Combat Scoreでは、Riot自身が
 
@@ -474,7 +474,7 @@ Adjusted Killは単純な
 
 ---
 
-## Performance Scoreでは大きな「独立加点」は確認しづらい
+### Performance Scoreでは大きな「独立加点」は確認しづらい
 
 追加で複数試合の全プレイヤーについて、
 
@@ -537,7 +537,7 @@ CypherはFirst Killを4回取っている。
 
 ---
 
-## ただし「First Killの価値が下がった」とはまだ言えない
+### ただし「First Killの価値が下がった」とはまだ言えない
 
 ここは明確に区別したい。
 
@@ -570,11 +570,11 @@ First Killは通常、
 
 そのため現時点では、
 
-### 言えそうなこと
+#### 言えそうなこと
 
 > ACSのようにFirst Killを独立して非常に強く評価する構造は、Performance Scoreでは見えにくくなった。
 
-### まだ言えないこと
+#### まだ言えないこと
 
 > First Killそのものの価値が低下した。
 
@@ -582,7 +582,7 @@ First Killは通常、
 
 ---
 
-# UtilityとObjectiveも評価対象になった
+## UtilityとObjectiveも評価対象になった
 
 Performance Scoreには、
 
@@ -622,11 +622,11 @@ Performance Scoreには、
 
 ---
 
-# ACS → Performance Scoreで変わったこと
+## ACS → Performance Scoreで変わったこと
 
 ここまでを整理する。
 
-## Combat以外まで評価範囲が広がった
+### Combat以外まで評価範囲が広がった
 
 ACSは主に「core combat」を評価する指標だった。
 
@@ -638,7 +638,7 @@ Performance ScoreではRiot自身が、
 
 ---
 
-## Tradeが独立した評価軸になった
+### Tradeが独立した評価軸になった
 
 敵を倒したという結果だけでなく、
 
@@ -648,7 +648,7 @@ Performance ScoreではRiot自身が、
 
 ---
 
-## Assistの相対的重要度が上がった可能性が高い
+### Assistの相対的重要度が上がった可能性が高い
 
 実データでも、ACSとPerformance Scoreの差を説明する重要な要素に見える。
 
@@ -660,7 +660,7 @@ Performance ScoreではRiot自身が、
 
 ---
 
-## Deathが明示的な評価項目になった
+### Deathが明示的な評価項目になった
 
 Adjusted Deathという項目が存在する。
 
@@ -672,29 +672,29 @@ Adjusted Deathという項目が存在する。
 
 ---
 
-## Utility / Plant / Defuseが可視化された
+### Utility / Plant / Defuseが可視化された
 
 Combat結果以外のラウンド貢献も評価範囲に含まれている。
 
 ---
 
-# ACS → Performance Scoreで変わらなかったこと
+## ACS → Performance Scoreで変わらなかったこと
 
 一方で、以下は大きく変わっていない。
 
-## Killは依然として重要
+### Killは依然として重要
 
 Performance ScoreでもKillとScoreの間には強い関係がある。
 
 ---
 
-## Damageも依然として重要
+### Damageも依然として重要
 
 DamageもPerformance Scoreの中心的な要素に見える。
 
 ---
 
-## Combat Performanceが土台
+### Combat Performanceが土台
 
 AssistやUtilityだけが多ければ高Scoreになるわけではない。
 
@@ -714,7 +714,7 @@ DamageやAdjusted Killが低い試合では、Performance Scoreも高くなり�
 
 ---
 
-# Performance Scoreと内部MMRは同じものなのか
+## Performance Scoreと内部MMRは同じものなのか
 
 ここからは内部MMRについて考える。
 
@@ -761,7 +761,7 @@ Rank UpdateではCombat Scoreに使われる一部のデータを利用するも
 
 ---
 
-# Performance ScoreとMMRは無関係なのか
+## Performance ScoreとMMRは無関係なのか
 
 ただし、
 
@@ -815,7 +815,7 @@ MMRの目的は、
 
 ---
 
-# MMRでは「絶対値」より「期待値との差」が重要なのではないか
+## MMRでは「絶対値」より「期待値との差」が重要なのではないか
 
 過去のRiotの説明には、Performanceについて興味深い考え方が登場する。
 
@@ -867,7 +867,7 @@ MMRの目的は、
 
 ---
 
-# RR増減からMMR変化を逆算できるか
+## RR増減からMMR変化を逆算できるか
 
 RRとMMRは無関係ではない。
 
@@ -902,7 +902,7 @@ RRは、
 
 ---
 
-# Performance ScoreからMMRについて何が分かるのか
+## Performance ScoreからMMRについて何が分かるのか
 
 Performance Scoreから内部MMRを直接逆算することはできない。
 
@@ -942,7 +942,7 @@ Performance ScoreとMMRは、目的の異なるシステムだからである。
 
 ---
 
-# まとめ
+## まとめ
 
 ACSからPerformance Scoreへの変更を一言で表すなら、
 
@@ -1002,7 +1002,7 @@ Killとしての価値や5v4を作る価値は当然残っており、Adjusted K
 
 ---
 
-# 現時点では分からないこと
+## 現時点では分からないこと
 
 今回のデータからも、以下についてはまだ判断できない。
 
@@ -1027,9 +1027,9 @@ Killとしての価値や5v4を作る価値は当然残っており、Adjusted K
 
 ---
 
-# 参考資料
+## 参考資料
 
-## Riot Games - [VALORANT パッチノート 13.06](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-13-06/)
+### Riot Games - [VALORANT パッチノート 13.06](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-13-06/)
 
 2026年9月22日公開。
 
@@ -1043,7 +1043,7 @@ Performance Scoreの導入について、
 
 と説明されている。
 
-## Riot Games - [VALORANT パッチノート 12.05](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-12-05/)
+### Riot Games - [VALORANT パッチノート 12.05](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-12-05/)
 
 2026年3月17日公開。
 
@@ -1053,7 +1053,7 @@ RiotはAssistについて、ラウンド勝利に大きく貢献するにもか�
 
 また、これらの変更をTeamplayを認識・推奨するためのものとして説明している。
 
-## Riot Games - [VALORANT パッチノート 12.00](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-12-00/)
+### Riot Games - [VALORANT パッチノート 12.00](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-12-00/)
 
 2026年1月6日公開。
 
@@ -1065,13 +1065,13 @@ Competitive Updateとして、
 
 目的はMatch Qualityの向上と、試合ごとの体験をより一貫させることとされている。
 
-## Riot Games - [VALORANT パッチノート 1.11](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-1-11/)
+### Riot Games - [VALORANT パッチノート 1.11](https://playvalorant.com/ja-jp/news/game-updates/valorant-patch-notes-1-11/)
 
 2020年10月27日公開。
 
 バトルスコアの算出方法について、ダメージ以外のアシストも考慮する変更が明記されている。
 
-## Riot Games - [Ask VALORANT #7](https://playvalorant.com/ja-jp/news/dev/ask-valorant-7/)
+### Riot Games - [Ask VALORANT #7](https://playvalorant.com/ja-jp/news/dev/ask-valorant-7/)
 
 2020年9月10日公開。
 
@@ -1092,7 +1092,7 @@ Competitive Updateとして、
 
 さらに旧Performanceタブの評価について、自分より高ランクの相手に対して繰り返し良い戦闘を行った場合などに「想定以上のPerformance」として認識する考え方が説明されている。
 
-## Riot Games - [Ask VALORANT「ランクレーティング エディション」](https://playvalorant.com/ja-jp/news/dev/ask-valorant-rank-rating-edition/)
+### Riot Games - [Ask VALORANT「ランクレーティング エディション」](https://playvalorant.com/ja-jp/news/dev/ask-valorant-rank-rating-edition/)
 
 2021年3月18日公開。
 
