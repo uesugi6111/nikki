@@ -53,22 +53,22 @@ ACSからPerformance Scoreへの変更は、
 
 | 要素 | ACS → Performance Scoreでの変化についての考察 |
 | --- | --- |
-| キル | 依然として非常に重要 |
-| ダメージ | 依然として非常に重要 |
-| アシスト | 相対的な評価が大きくなった可能性が高い |
-| トレード | 新たに明示された重要な評価軸 |
+| キル | Performance Scoreでも強く関係している |
+| ダメージ | Performance Scoreでも強く関係している |
+| アシスト | 明示的に評価され、追加の説明力を持つ可能性が高い |
+| トレード | 新たに明示された評価項目 |
 | デス | 「調整デス」として明示的な評価対象になった |
-| ユーティリティー | 評価範囲が広がった |
-| 設置・解除 | 独立した評価対象になった |
-| ファーストキル | ACSのような大きな独立加点が存在する形跡は確認しづらい。ただし価値自体が下がったとはまだ言えない |
+| ユーティリティー | 評価項目として明示されている |
+| 設置・解除 | 独立した表示項目として評価される |
+| ファーストキル | ACSに見られた「ラウンド早期のKillを強く評価する構造」に相当する大きな追加効果は確認しづらい。ただしFirst Kill自体の価値が下がったとは言えない |
 
 特に重要なのは、
 
-**「キルの価値を下げて、その代わりにサポート行動を評価するようになった」わけではなさそう**
+> 「キルやダメージを軽視して、その代わりにサポート行動を評価する指標になった」わけではなさそう
 
 という点だ。
 
-実際の試合データを見る限り、キルやダメージはPerformance Scoreでも依然として非常に重要である。
+実際の試合データを見る限り、KillやDamageはPerformance Scoreでも依然として強く関係している。
 
 そのうえで、
 
@@ -78,21 +78,28 @@ ACSからPerformance Scoreへの変更は、
 - Utility
 - Objective
 
-といった、ACSでは十分に表現できなかった要素を追加したと考えるのがよさそうだ。
+といった、ACSでは十分に表現できなかった要素まで評価範囲を広げたと考えるのがよさそうだ。
 
-イメージとしては、
+概念的には、
 
-`Performance Score = Combat + Team Interaction + Utility / Objective`
+```text
+Performance Score
+  ≒ Combat
+  + Team Interaction
+  + Utility / Objective
+```
 
-に近い。
+のようなイメージに近い。ただし、これは計算式を示したものではない。
+
+また、KillやDamageについても「ACS時代と同じ重みで評価されている」とまでは言えない。分かるのは、Performance ScoreでもKillとDamageが主要な要素に見えるというところまでである。
 
 内部MMRとの関係については、Performance Scoreの導入に合わせてMMRの算出方法も変更された、という公式発表は確認できない。
 
-Riotは2026年1月のPatch 12.00で内部MMRの算出方法を変更した際には、その変更をパッチノートで明確にアナウンスしている。一方、Patch 13.06ではPerformance Scoreの導入は詳しく説明されているものの、内部MMRの変更には触れられていない。
+Riotは2026年1月のPatch 12.00で内部MMRの算出方法を変更した際には、その変更をパッチノートで明確にアナウンスしている。一方、Patch 13.06ではPerformance Scoreの導入について説明されているものの、内部MMRの変更には触れられていない。
 
-この違いは、今回MMR側をPerformance Scoreに合わせて変更したのではなく、**表示される評価指標をACSからPerformance Scoreへ更新し、すでに存在していた内部MMRのPerformance評価に近づけた**という仮説を補強する状況証拠になる。
+この違いは、今回MMR側を同時に変更したのではなく、**表示上の評価指標をACSからPerformance Scoreへ更新し、既存の内部MMRのPerformance評価に近づけた**という仮説を考えるうえで、意味のある状況証拠になる。
 
-したがって、Performance Scoreは内部MMRそのものではないが、ACSよりも内部のPerformance評価に近い考え方を可視化した指標である可能性が高い、と現時点では考えている。ただし、告知がないことは変更がなかったことの証明ではなく、内部MMRの具体的な計算式も公開されていないため、ここはあくまで仮説である。
+ただし、告知がないことはMMRが変更されなかった証明ではない。また、この状況証拠だけでPerformance ScoreがACSより内部MMRの評価に近いとまでは確認できない。両者がどの程度似ているかは、現在公開されている情報だけでは判断できず、ここは検証可能な追加情報を待つ仮説として扱う。
 
 ---
 
@@ -113,9 +120,21 @@ Riotは2026年1月のPatch 12.00で内部MMRの算出方法を変更した際に
 
 First Killについては、追加データを含めておよそ **80 player-match** 程度を比較した。
 
-もちろん、この程度のサンプルからRiotの正確な計算式を逆算することはできない。
+さらにFirst Kill単独の見かけ上の相関だけで判断せず、
 
-ただし、ACSとPerformance Scoreでどのような評価傾向の違いがあるかを見る材料としては、いくつか興味深い傾向が確認できた。
+- Kill
+- Death
+- Assist
+- Trade
+- First Kill
+
+を同時に説明変数として扱い、Performance Scoreとの関係を見る簡易的な線形回帰も行った。試合ごとのラウンド数やスコア分布の違いをそのまま混ぜないよう、試合ごとの差も考慮して比較している。
+
+この分析では、Killは強い正の関係、AssistとTradeも正の関係、Deathは負の関係を示し、First Killは他の変数を考慮するとかなり小さい関係となった。
+
+ただし、今回取得できていないDamage、Adjusted Kill、Adjusted Death、Utility、Agent、Killが発生した状況などもPerformance Scoreへ影響している可能性が高い。そのため、この回帰はRiotの計算式や正式な係数を推定するものではなく、観測できた複数要素のうち何が追加の説明力を持ちそうかを見る簡易分析として扱う。
+
+この規模のサンプルから正確な計算式は逆算できないが、ACSとPerformance Scoreの評価傾向の違いを考える材料として、いくつかの傾向が確認できた。
 
 ---
 
@@ -183,7 +202,7 @@ Patch 13.06でRiotはPerformance Scoreについて、
 
 ---
 
-## 変わらなかったもの：KillとDamageは依然として重要
+## Performance Scoreでも引き続き重要なもの：KillとDamage
 
 Performance Scoreになったからといって、
 
@@ -218,7 +237,7 @@ AssistやUtilityが多くても、
 
 という構造をイメージした方が分かりやすい。
 
-**ACSで評価していたCombatを残したまま、その外側に評価範囲を広げた**
+**ACSで評価していたCombatを重要な要素として残し、その外側に評価範囲を広げた**
 
 と考えるのが自然だと思う。
 
@@ -299,12 +318,9 @@ Patch 12.05では、
 
 その約半年後にPerformance Scoreが導入された。
 
-実データでも、ACSに対してPerformance Scoreが大きく上振れしている試合には、
+実データでは、Kill / Death / Assist / Tradeなどを同時に考慮した簡易分析でも、AssistとTradeにはPerformance Scoreに対する追加の正方向の関係が残った。
 
-- Assistが多い
-- Tradeが多い
-
-ケースが複数確認できた。
+この結果は、Combatの結果だけでは説明しきれない部分をAssistやTradeが補っている、という見方と比較的よく整合する。
 
 例えばあるOmenの試合では、
 
@@ -330,19 +346,17 @@ Patch 12.05では、
 
 だった。
 
-ACSだけを見ると突出した試合ではないが、Performance Scoreではかなり高く評価されている。
+これらは、AssistやTradeが多い試合でPerformance Scoreも高かった例として参考になる。ただし、ACSとPerformance Scoreは別の指標であり、
 
-逆にACSが高くてもAssistやTradeが少ない試合では、Performance ScoreがACSほど突出しない例もあった。
+- 尺度
+- 平均値
+- 分布
+- 上限
+- 各要素の重み
 
-そのため、
+が同じである根拠はない。たとえばPerformance ScoreからACSを引いた数値を、そのままAssistやTradeによる加点とみなすことはできない。
 
-`Performance Score - ACS的なCombat評価`
-
-の差を生み出している要素として、
-
-`Assist + Trade`
-
-はかなり重要なのではないかと考えている。
+見るべきなのは絶対値の差ではなく、Combat成績が近いプレイヤー同士でPerformance Scoreに差があるか、KillやDeathなどを考慮した後でもAssistやTradeが説明に寄与するかである。今回の簡易分析では、この意味でAssistとTradeが追加の説明力を持つ可能性が確認できた。
 
 !!! note "AssistがKillより重要という意味ではない"
 
@@ -489,9 +503,11 @@ Adjusted Killは単純な
 
 約80 player-match程度のデータを見る限り、First Kill単独とPerformance Scoreの関係はそれほど強くなかった。
 
-さらにKill / Death / Assist / Tradeなどを同時に考慮する簡単な分析でも、
+さらにKill / Death / Assist / Trade / First Killを同時に説明変数として扱う簡易的な線形回帰でも、
 
 **First Kill数そのものによる大きな独立効果は確認しづらかった。**
+
+この分析の目的はFirst Kill単独の相関を見ることではなく、他の観測できる戦闘スタッツを考慮した後に追加の説明力が残るかを見ることだった。
 
 分かりやすい例として、同じ試合に以下の2人がいた。
 
@@ -678,9 +694,9 @@ Combat結果以外のラウンド貢献も評価範囲に含まれている。
 
 ---
 
-## ACS → Performance Scoreで変わらなかったこと
+## Performance Scoreでも引き続き重要なもの
 
-一方で、以下は大きく変わっていない。
+以下はPerformance Scoreでも引き続き重要であることが確認できる。
 
 ### Killは依然として重要
 
@@ -950,9 +966,9 @@ ACSからPerformance Scoreへの変更を一言で表すなら、
 
 と考えている。
 
-KillとDamageの重要性は変わっていない。
+KillとDamageは、今回のデータでもPerformance Scoreの土台に見える。
 
-それらは現在もPerformance Scoreの土台に見える。
+ただし、ACS時代と同じ係数・同じ重みで評価されているかは分からない。
 
 一方で、
 
@@ -985,6 +1001,8 @@ Killとしての価値や5v4を作る価値は当然残っており、Adjusted K
 > **一部のGame Telemetryを共有している可能性はあるが、異なる目的を持つ別の評価システム**
 
 と考えるのが最も安全だと思う。
+
+Patch 12.00では内部MMRの算出方法変更が告知され、Patch 13.06ではPerformance Scoreが導入された一方でMMR変更の告知はなかった。この違いは、表示指標を既存の内部Performance評価に近づけたという仮説を考える状況証拠になる。ただし、これだけでPerformance ScoreがACSよりMMRに近いと確認できるわけではない。
 
 整理すると、
 
